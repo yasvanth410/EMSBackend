@@ -1,0 +1,14 @@
+{
+    "UserId": "A111",
+    "FirstName": "Rohit",
+    "LastName": "sharma",
+    "UserName": "rsharma_45",
+    "Email":"rohit@gmail.com",
+    "Password":"r@45",
+    "CreatedBy":"Rohit",
+    "createdDate":"01/04/2024",
+    "UpdatedBy":"",
+    "UpdatedDate": "",
+    "IsActive": 1,
+    "IsDeleted": 0
+}
