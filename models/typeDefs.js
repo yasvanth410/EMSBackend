@@ -23,21 +23,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createEmployee(
-      UserId: String
-      FirstName: String
-      LastName: String
-      UserName: String
-      Email: String
-      Password: String
-      Role: String
-      CreatedBy: String
-      UpdatedBy: String
-      IsActive: Int
-      IsDeleted: Int
-    ): Employee
-
-    createEmployeeInfo(input: EmployeeInfoInput): EmployeeInfo
+    
 
     createPermission(Name: String, CreatedBy: String): Permission
 
@@ -73,15 +59,7 @@ const typeDefs = gql`
 
   ${employeeInfo}
 
-  type EmployeeLoginResponse {
-    message: String
-    status: Int
-    userId: ID
-    role: String
-    token: String
-    username: String
-    errorMessage: String
-  }
+  
 
   ${employeeInfoQuery}
   ${permissionInfo}

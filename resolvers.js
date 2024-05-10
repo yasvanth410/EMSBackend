@@ -13,7 +13,6 @@ const getOnePermission = require("./dbHandler/getOnePermission.js");
 const getOneRole = require("./dbHandler/getOneRole.js");
 const updateAsset = require("./dbHandler/updateAsset.js");
 const updateRole = require("./dbHandler/updateRole.js");
-const  saveEmployeeInfo  = require('./dbHandler/createEmployeeInfo.js');
 const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 
 const resolvers = {
