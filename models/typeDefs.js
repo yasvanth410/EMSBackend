@@ -1,10 +1,13 @@
 const gql = require("graphql-tag");
 const { GraphQLScalarType } = require("@apollo/server");
-const employeeInfoQuery = require("../graphqlQuery/createEmployeeInfo");
-const employeeInfo = require("../graphqlQuery/createEmployee");
 const permissionInfo = require("../graphqlQuery/createPermission");
 const roleInfo = require("../graphqlQuery/createRole");
 const assetInfo = require("../graphqlQuery/createAsset");
+const {employeeInfoQuery, createEmployeeInfo} = require('../graphqlQuery/createEmployeeInfo');
+const {employeeInfo, createEmployee} = require('../graphqlQuery/createEmployee');
+const {login,employeeLoginResponse} = require('../graphqlQuery/loginQuery');
+const getEmployeeInfoById = require('../graphqlQuery/employeeInfoById');
+const updateEmployeeInfo = require('../graphqlQuery/updateEmployeeInfo');
 
 const typeDefs = gql`
   scalar DateTime
@@ -63,6 +66,9 @@ const typeDefs = gql`
 
     updateAsset(input: AssetInput): Asset
     updateRole(input: RoleInput): Role
+    ${createEmployee}
+      ${createEmployeeInfo}
+      ${updateEmployeeInfo}
   }
 
   ${employeeInfo}
@@ -81,6 +87,8 @@ const typeDefs = gql`
   ${permissionInfo}
   ${roleInfo}
   ${assetInfo}
+    ${employeeInfo}
+    ${employeeLoginResponse}
 `;
 
 module.exports = { typeDefs };

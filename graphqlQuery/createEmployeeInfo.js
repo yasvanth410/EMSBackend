@@ -12,7 +12,7 @@ type Location{
     Flat: String
     Area: String
     Landmark: String
-    Pincode: Int
+    Pincode: String
     City: String
     State: String
 }
@@ -44,9 +44,9 @@ type EmployeeInfo{
     Contact : Contact
     Email: Email
     Location: Location
-    dob: DateTime
-    doj: DateTime
-    doc: DateTime
+    dob: String
+    doj: String
+    doc: String
     Department: Department
     SkillSet: Skillset
     ManagerId: String
@@ -72,7 +72,7 @@ input LocationInput{
     Flat: String
     Area: String
     Landmark: String
-    Pincode: Int
+    Pincode: String
     City: String
     State: String
 }
@@ -104,9 +104,9 @@ input EmployeeInfoInput{
     Contact : ContactInput
     Email: EmailInput
     Location: LocationInput
-    dob: DateTime
-    doj: DateTime
-    doc: DateTime
+    dob: String
+    doj: String
+    doc: String
     Department: DepartmentInput
     SkillSet: SkillsetInput
     ManagerId: String
@@ -115,6 +115,10 @@ input EmployeeInfoInput{
     UpdatedBy: String
     IsActive: Int
     IsDeleted: Int
-}`
+}`;
 
-module.exports = employeeInfoQuery
+const createEmployeeInfo = `
+createEmployeeInfo( input: EmployeeInfoInput ): EmployeeInfo
+`;
+
+module.exports = {employeeInfoQuery, createEmployeeInfo}

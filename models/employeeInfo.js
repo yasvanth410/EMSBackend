@@ -82,7 +82,7 @@ const locationSchema = new mongoose.Schema({
         required: true,
     },
     Pincode: {
-        type: Number,
+        type: String,
         required: true,
         validate: {
             validator: function (v) {
@@ -177,15 +177,15 @@ const employeeInfoSchema = new mongoose.Schema({
     Email: emailSchema,
     Location: locationSchema,
     dob: {
-        type: Date,
+        type: String,
         required: true
     }, 
     doj: {
-        type: Date,
+        type: String,
         required: true
     }, 
     doc: {
-        type: Date,
+        type: String,
         required: true
     },
     Department: departmentSchema,

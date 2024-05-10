@@ -12,6 +12,22 @@ type Employee{
     UpdatedBy:String
     IsActive: Int
     IsDeleted: Int
-}`
+}`;
 
-module.exports = employeeInfo
+const createEmployee = `
+createEmployee( 
+    UserId:String
+    FirstName:String
+    LastName:String
+    UserName:String
+    Email:String
+    Password:String
+    Role:String
+    CreatedBy:String
+    UpdatedBy:String
+    IsActive: Int
+    IsDeleted: Int
+): Employee
+`;
+
+module.exports = {employeeInfo, createEmployee}

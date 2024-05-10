@@ -14,7 +14,7 @@ async function addAuthLogs(authLogFields){
             IsDeleted:IsDeleted
         }) ;
         const saveLogs = saveAuthLogs.save();
-        console.log("logs stored successfully");
+        // console.log("logs stored successfully");
     } catch (error) {
         console.log(`failed to save the logs ${error}`);
     }
