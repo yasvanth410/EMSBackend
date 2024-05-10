@@ -2,6 +2,7 @@ const { getLoginData } = require('./dbHandler/login');
 const { saveEmployee } = require('./dbHandler/createEmployee');
 const  saveEmployeeInfo  = require('./dbHandler/createEmployeeInfo.js');
 const getEmployeeInfo = require('./dbHandler/employeeInfoById');
+const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 
 const resolvers = {
     Query: {
@@ -33,6 +34,14 @@ const resolvers = {
         createEmployeeInfo: async(_, args)=>{
             try {
                 return await saveEmployeeInfo(args);
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+        updateEmployeeInfo: async(_, args)=>{
+            try{
+                const {UserId, input} = args
+                return await updateEmployeeInfo(UserId, input)
             } catch (error) {
                 throw new Error(error);
             }
