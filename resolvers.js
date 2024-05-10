@@ -1,43 +1,123 @@
-const { getLoginData } = require('./dbHandler/login');
-const { saveEmployee } = require('./dbHandler/createEmployee');
+
+const { getLoginData } = require("./dbHandler/login");
+const { saveEmployee } = require("./dbHandler/createEmployee");
+const saveEmployeeInfo = require("./dbHandler/createEmployeeInfo.js");
+const getEmployeeInfo = require("./dbHandler/employeeInfoById");
+const savePermission = require("./dbHandler/createPermission.js");
+const saveRole = require("./dbHandler/createRole.js");
+const saveAsset = require("./dbHandler/createAsset.js");
+const getPermission = require("./dbHandler/getAllPermission.js");
+const getAsset = require("./dbHandler/getAllAsset.js");
+const getOneAsset = require("./dbHandler/getOneAsset.js");
+const getOnePermission = require("./dbHandler/getOnePermission.js");
+const getOneRole = require("./dbHandler/getOneRole.js");
+const updateAsset = require("./dbHandler/updateAsset.js");
+const updateRole = require("./dbHandler/updateRole.js");
 const  saveEmployeeInfo  = require('./dbHandler/createEmployeeInfo.js');
-const getEmployeeInfo = require('./dbHandler/employeeInfoById');
 const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 
 const resolvers = {
-    Query: {
-        employeeLogin: async (parent, args, context, info, next) => {
-            try {
-                return await getLoginData(args)
-            } catch (error) {
-                // console.log("Error Name: ", error.name, "ErrorStatus: ", error.satus || 500, "Error Message: ", error.message, "Error Stack", error.stack);
-                throw new Error(error);
-            }
-        },
-        employeeInfoById: async(parent, args)=>{
-            try {
-               return await getEmployeeInfo(args); 
-            } catch (error) {
-               throw new Error(error) 
-            }
-        }
+  Query: {
+    employeeLogin: async (parent, args, context, info, next) => {
+      try {
+        return await getLoginData(args);
+      } catch (error) {
+        throw new Error(error);
+      }
     },
-    Mutation: {
-        createEmployee: async(parent, args, context, info, next)=>{
-            try {
-                return await saveEmployee(args);
-            } catch (error) {
-                throw new Error(error);
-                // return error;
-            }
-        },
-        createEmployeeInfo: async(_, args)=>{
-            try {
-                return await saveEmployeeInfo(args);
-            } catch (error) {
-                throw new Error(error);
-            }
-        },
+    employeeInfoById: async (parent, args) => {
+      try {
+        return await getEmployeeInfo(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getPermission: async (parent, args) => {
+      try {
+        return await getPermission();
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getAsset: async (parent, args) => {
+      try {
+        return await getAsset();
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getOneAsset: async (parent, args) => {
+      try {
+        return await getOneAsset(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getOnePermission: async (parent, args) => {
+      try {
+        return await getOnePermission(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getOneRole: async (parent, args) => {
+      try {
+        return await getOneRole(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+  },
+  Mutation: {
+    createEmployee: async (parent, args, context, info, next) => {
+      try {
+        return await saveEmployee(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    createEmployeeInfo: async (_, args) => {
+      try {
+        return await saveEmployeeInfo(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    createPermission: async (parent, args) => {
+      try {
+        return await savePermission(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    createRole: async (parent, args) => {
+      try {
+        return await saveRole(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    createAsset: async (parent, args) => {
+      try {
+        return await saveAsset(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    updateAsset: async (parent, args) => {
+      try {
+        return await updateAsset(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    updateRole: async (parent, args) => {
+      try {
+        return await updateRole(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
         updateEmployeeInfo: async(_, args)=>{
             try{
                 const {UserId, input} = args
@@ -46,7 +126,7 @@ const resolvers = {
                 throw new Error(error);
             }
         }
-    }
+  },
 };
 
-module.exports = { resolvers }
+module.exports = { resolvers };
