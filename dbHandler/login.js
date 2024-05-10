@@ -58,6 +58,7 @@ async function getLoginData(args) {
                 }
                 const jwtToken = jwt.sign(payload, secretKey, {expiresIn:"20m"});
                 loginResponse.userId = employee[0].UserId,
+                loginResponse.role = employee[0].Role,
                 loginResponse.username = employee[0].UserName,
                 loginResponse.message = `${employee[0].UserName} is logged in successfully`,
                 loginResponse.status = 200
