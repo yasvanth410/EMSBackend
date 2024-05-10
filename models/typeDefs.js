@@ -13,8 +13,8 @@ const typeDefs = gql`
   scalar DateTime
 
   type Query {
-    employeeLogin(UserName: String, Password: String): EmployeeLoginResponse
-    employeeInfoById(UserId: String): EmployeeInfo
+    ${login}
+    ${getEmployeeInfoById}
     getPermission: [Permission]
     getAsset: [Asset]
     getOneAsset(_id: String): Asset

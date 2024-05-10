@@ -7,6 +7,7 @@ type EmployeeLoginResponse{
     message: String
     status: Int
     userId: ID,
+    role: String,
     token:String,
     username: String,
     errorMessage: String
