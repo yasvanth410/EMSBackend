@@ -15,25 +15,27 @@ const contactSchema = new mongoose.Schema({
     },
     Primary: {
         type: String,
+       
         required: true,
-        validate: {
-            validator: function (v) {
-                const contactValid = /^\d{10}$/;
-                return contactValid.test(v);
-            },
-            message: (props) => `${props.value} should contains only 10 digits`,
-        },
+        // validate: {
+        //     validator: function (v) {
+        //         const contactValid = /^\d{10}$/;
+        //         return contactValid.test(v);
+        //     },
+        //     message: (props) => `${props.value} should contains only 10 digits`,
+        // },
     },
     Emergency: {
         type: String,
+        
         required: true,
-        validate: {
-            validator: function (v) {
-                const contactValid = /^\d{10}$/;
-                return contactValid.test(v);
-            },
-            message: (props) => `${props.value} should contains only 10 digits`,
-        },
+        // validate: {
+        //     validator: function (v) {
+        //         const contactValid = /^\d{10}$/;
+        //         return contactValid.test(v);
+        //     },
+        //     message: (props) => `${props.value} should contains only 10 digits`,
+        // },
     }
 });
 
@@ -167,7 +169,7 @@ const employeeInfoSchema = new mongoose.Schema({
     },
     Photo: {
         type: String,
-        required: true
+        required:true
     },
     Gender: {
         type: String,

@@ -1,4 +1,5 @@
 const employeeInfoQuery = `
+
 type Contact{
     CountryCode: String
     Primary: String
