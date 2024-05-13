@@ -1,6 +1,7 @@
 const EmployeeInfo = require('../models/employeeInfo');
 
 async function updateEmployeeInfo(UserId, input){
+    // console.log(input)
     try {
         const date  = new Date();
         const getEmployeeById = await EmployeeInfo.find({UserId: UserId, IsActive: 1, IsDeleted: 0});

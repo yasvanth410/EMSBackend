@@ -117,14 +117,14 @@ const resolvers = {
         throw new Error(error);
       }
     },
-        updateEmployeeInfo: async(_, args)=>{
-            try{
-                const {UserId, input} = args
-                return await updateEmployeeInfo(UserId, input)
-            } catch (error) {
-                throw new Error(error);
-            }
-        }
+    updateEmployeeInfo: async(_, args)=>{
+      try{
+        const {UserId, input} = args
+        return await updateEmployeeInfo(UserId, input)
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 };
 

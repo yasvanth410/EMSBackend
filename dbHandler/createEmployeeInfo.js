@@ -2,9 +2,11 @@ const EmployeeInfo = require('../models/employeeInfo');
 
 
 async function saveEmployeeInfo(args){
-    // console.log(args);
+    console.log(args);
     const { FirstName, MiddleName, LastName, EmployeeCode, UserId, Photo, Gender, Contact, Email, Location, dob, doj, doc, Department, SkillSet, ManagerId, Designation, CreatedBy, IsActive, IsDeleted} = args.input;
     const { CountryCode, Primary, Emergency } = Contact;
+    // const { number:primaryNumber, internationalNumber:primaryInternationalNumber, nationalNumber:primaryNationalNumber, e164Number:primaryE164Number, countryCode: primaryCountryCode} = Primary
+    // const { number:emergencyNumber, internationalNumber:emergencyInternationalNumber, nationalNumber:emergencyNationalNumber, e164Number:emergencyE164Number, countryCode: emergencyCountryCode} = Primary
     const { CompanyMail, PersonalMail} = Email;
     const { Flat, Area, Landmark, Pincode, City, State } = Location;
     const {DepartmentId, DepartmentName} = Department;
@@ -22,8 +24,8 @@ async function saveEmployeeInfo(args){
             Gender: Gender,
             Contact: {
                 CountryCode: CountryCode,
-                Primary: Primary,
-                Emergency: Emergency
+                Primary:Primary,
+                Emergency:Emergency
             },
             Email: {
                 CompanyMail: CompanyMail,
