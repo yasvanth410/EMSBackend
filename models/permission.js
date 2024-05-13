@@ -4,6 +4,16 @@ const permissionSchema = new mongoose.Schema({
   Name: {
     type: String,
     required: true,
+    unique: true,
+    validate: {
+      validator: function (v) {
+          const nameValid = /^[a-z]+(_[a-z]+)$/;
+          return nameValid.test(v);
+      },
+      message: (props) => {
+          `${props.value} should contains only lower letter and no white spaces`
+      }
+  }
   },
   CreatedBy: {
     type: String,

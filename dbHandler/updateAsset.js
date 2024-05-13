@@ -3,6 +3,7 @@ const Asset = require("../models/asset");
 async function updateAsset(args) {
   try {
     const { input } = args;
+    const _id = input._id;
     const date = new Date();
     input.UpdatedDate =
       date.toLocaleDateString() + " " + date.toLocaleTimeString();
