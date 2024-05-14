@@ -45,9 +45,9 @@ type EmployeeInfo{
     Contact : Contact
     Email: Email
     Location: Location
-    dob: String
-    doj: String
-    doc: String
+    dob: Date
+    doj: Date
+    doc: Date
     Department: Department
     SkillSet: Skillset
     ManagerId: String
@@ -105,9 +105,9 @@ input EmployeeInfoInput{
     Contact : ContactInput
     Email: EmailInput
     Location: LocationInput
-    dob: String
-    doj: String
-    doc: String
+    dob: Date
+    doj: Date
+    doc: Date
     Department: DepartmentInput
     SkillSet: SkillsetInput
     ManagerId: String

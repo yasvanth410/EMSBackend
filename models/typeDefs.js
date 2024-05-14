@@ -8,13 +8,15 @@ const {employeeInfo, createEmployee} = require('../graphqlQuery/createEmployee')
 const {login,employeeLoginResponse} = require('../graphqlQuery/loginQuery');
 const getEmployeeInfoById = require('../graphqlQuery/employeeInfoById');
 const updateEmployeeInfo = require('../graphqlQuery/updateEmployeeInfo');
+const getAllEmployeeInfo = require('../graphqlQuery/getAllEmployeeInfo');
 
 const typeDefs = gql`
-  scalar DateTime
+  scalar Date
 
   type Query {
     ${login}
     ${getEmployeeInfoById}
+    ${getAllEmployeeInfo}
     getPermission: [Permission]
     getAsset: [Asset]
     getOneAsset(_id: String): Asset
