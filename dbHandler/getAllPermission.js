@@ -2,7 +2,7 @@ const Permission = require('../models/permission');
 
 async function getPermission(){
     try {
-     const permissions = await Permission.find();
+     const permissions = await Permission.find({IsDeleted: 0});
      if(!permissions || permissions.length===0){
         throw new Error("Permissions not found")
      }
