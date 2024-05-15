@@ -179,15 +179,15 @@ const employeeInfoSchema = new mongoose.Schema({
     Email: emailSchema,
     Location: locationSchema,
     dob: {
-        type: String,
+        type: Date,
         required: true
     }, 
     doj: {
-        type: String,
+        type: Date,
         required: true
     }, 
     doc: {
-        type: String,
+        type: Date,
         required: true
     },
     Department: departmentSchema,

@@ -16,11 +16,12 @@ const getEmployeeInfoById = require("../graphqlQuery/employeeInfoById");
 const updateEmployeeInfo = require("../graphqlQuery/updateEmployeeInfo");
 
 const typeDefs = gql`
-  scalar DateTime
+  scalar Date
 
   type Query {
     ${login}
     ${getEmployeeInfoById}
+    ${getAllEmployeeInfo}
     getPermission: [Permission]
     getAsset: [Asset]
     getOneAsset(_id: String): Asset

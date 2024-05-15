@@ -2,7 +2,7 @@
 const { getLoginData } = require("./dbHandler/login");
 const { saveEmployee } = require("./dbHandler/createEmployee");
 const saveEmployeeInfo = require("./dbHandler/createEmployeeInfo.js");
-const getEmployeeInfo = require("./dbHandler/employeeInfoById");
+const { getEmployeeInfo, getAllEmployeesInfo } = require("./dbHandler/employeeInfoById");
 const savePermission = require("./dbHandler/createPermission.js");
 const saveRole = require("./dbHandler/createRole.js");
 const saveAsset = require("./dbHandler/createAsset.js");
@@ -14,6 +14,7 @@ const getOneRole = require("./dbHandler/getOneRole.js");
 const updateAsset = require("./dbHandler/updateAsset.js");
 const updateRole = require("./dbHandler/updateRole.js");
 const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
+
 
 const resolvers = {
   Query: {
@@ -30,6 +31,9 @@ const resolvers = {
       } catch (error) {
         throw new Error(error);
       }
+    },
+    employeeInfo: async()=>{
+      return await getAllEmployeesInfo();
     },
     getPermission: async (parent, args) => {
       try {

@@ -13,4 +13,16 @@ async function getEmployeeInfo(args){
     }
 }
 
-module.exports = getEmployeeInfo
+async function getAllEmployeesInfo(){
+    try {
+        const employeesInfo = await EmployeeInfo.find({IsActive:1, IsDeleted:0});
+        if(!employeesInfo || employeesInfo.length===0){
+            throw new Error("No Employee found");
+        }
+        return employeesInfo
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {getEmployeeInfo, getAllEmployeesInfo}
