@@ -12,6 +12,7 @@ const assetSchema = new mongoose.Schema({
   AssetType: {
     type: String,
     required: true,
+    enum: ["Laptop", "Mobile", "Keyboard", "Mouse", "Wifi Router"],
   },
   Memory: {
     type: String,
@@ -28,14 +29,25 @@ const assetSchema = new mongoose.Schema({
   Warranty: {
     type: String,
     required: true,
+    enum: [
+      "1 Year",
+      "2 Year",
+      "3 Year",
+      "4 Year",
+      "5 Year",
+      "6 Year",
+      "7 Year",
+    ],
   },
   AssetTag: {
     type: String,
     required: true,
+    unique: true,
   },
   SerialNumber: {
     type: String,
     required: true,
+    unique: true,
   },
   Description: {
     type: String,
