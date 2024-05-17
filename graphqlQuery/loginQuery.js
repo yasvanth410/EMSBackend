@@ -1,4 +1,3 @@
-
 const login = `
 employeeLogin(UserName:String, Password:String):EmployeeLoginResponse
 `;

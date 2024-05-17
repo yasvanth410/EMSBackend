@@ -4,14 +4,14 @@ const contactSchema = new mongoose.Schema({
     _id: false,
     CountryCode: {
         type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                const contactValid = /^\+.{2,}$/;
-                return contactValid.test(v);
-            },
-            message: (props) => `${props.value} should start wit + sign`,
-        },
+        // required: true,
+        // validate: {
+        //     validator: function (v) {
+        //         const contactValid = /^\+.{2,}$/;
+        //         return contactValid.test(v);
+        //     },
+        //     message: (props) => `${props.value} should start wit + sign`,
+        // },
     },
     Primary: {
         type: String,
@@ -119,13 +119,12 @@ const departmentSchema = new mongoose.Schema({
 const certificationSchema = new mongoose.Schema({
     _id: false,
     CertificationName: String,
-    CertificationDate: String
+    CertificationDate: Date
 })
 const skillSetSchema = new mongoose.Schema({
     _id: false,
     EmployeeSkillsetId: {
         type: String,
-        required: true
     },
     PrimarySkillset: {
         type: [String],
@@ -133,7 +132,6 @@ const skillSetSchema = new mongoose.Schema({
     },
     SecondarySkillset: {
         type: [String],
-        requred: true
     } ,
     SkillLevel: {
         type: String,
@@ -153,7 +151,6 @@ const employeeInfoSchema = new mongoose.Schema({
     },
     MiddleName: {
         type: String,
-        required: true
     },
     LastName: {
         type: String,

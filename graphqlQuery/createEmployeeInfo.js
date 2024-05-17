@@ -23,7 +23,7 @@ type Department{
 }
 type Certification{
     CertificationName: String
-    CertificationDate: String
+    CertificationDate: Date
 }
 type Skillset{
     EmployeeSkillsetId: String
@@ -35,6 +35,7 @@ type Skillset{
 }
 
 type EmployeeInfo{
+    _id: String
     FirstName: String
     MiddleName: String
     LastName: String
@@ -57,7 +58,6 @@ type EmployeeInfo{
     IsActive: Int
     IsDeleted: Int
 }
-
 
 
 input ContactInput{
@@ -83,7 +83,7 @@ input DepartmentInput{
 }
 input CertificationInput{
     CertificationName: String
-    CertificationDate: String
+    CertificationDate: Date
 }
 input SkillsetInput{
     EmployeeSkillsetId: String
@@ -119,7 +119,7 @@ input EmployeeInfoInput{
 }`;
 
 const createEmployeeInfo = `
-createEmployeeInfo( input: EmployeeInfoInput ): EmployeeInfo
+createEmployeeInfo(Username: String, input: EmployeeInfoInput ): EmployeeInfo
 `;
 
 module.exports = {employeeInfoQuery, createEmployeeInfo}

@@ -13,7 +13,7 @@ const {
 } = require("../graphqlQuery/createEmployee");
 const { login, employeeLoginResponse } = require("../graphqlQuery/loginQuery");
 const getEmployeeInfoById = require("../graphqlQuery/employeeInfoById");
-const updateEmployeeInfo = require("../graphqlQuery/updateEmployeeInfo");
+const {updateEmployeeInfo, updateEmployeeById} = require("../graphqlQuery/updateEmployeeInfo");
 const getAllEmployeeInfo = require("../graphqlQuery/getAllEmployeeInfo");
 
 const typeDefs = gql`
@@ -63,6 +63,7 @@ const typeDefs = gql`
     ${createEmployee}
     ${createEmployeeInfo}
     ${updateEmployeeInfo}
+    ${updateEmployeeById}
   }
 
   ${employeeInfo}
@@ -73,8 +74,8 @@ const typeDefs = gql`
   ${permissionInfo}
   ${roleInfo}
   ${assetInfo}
-    ${employeeInfo}
-    ${employeeLoginResponse}
+  ${employeeInfo}
+  ${employeeLoginResponse}
 `;
 
 module.exports = { typeDefs };
