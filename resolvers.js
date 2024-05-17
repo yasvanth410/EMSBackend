@@ -15,7 +15,8 @@ const getOnePermission = require("./dbHandler/getOnePermission.js");
 const getOneRole = require("./dbHandler/getOneRole.js");
 const updateAsset = require("./dbHandler/updateAsset.js");
 const updateRole = require("./dbHandler/updateRole.js");
-const updateEmployeeInfo = require("./dbHandler/updateEmployeeInfo.js");
+const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
+const updateEmployeeById = require("./dbHandler/updateEmployeeInfoById.js");
 
 const resolvers = {
   Query: {
@@ -123,10 +124,19 @@ const resolvers = {
         throw new Error(error);
       }
     },
-    updateEmployeeInfo: async (_, args) => {
+    updateEmployeeInfo: async(_, args)=>{
+      try{
+        const {UserId, Username,input} = args
+        // console.log(args);
+        return await updateEmployeeInfo(UserId, Username, input);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    updateEmployeeInfoById: async(_, args)=>{
       try {
-        const { UserId, input } = args;
-        return await updateEmployeeInfo(UserId, input);
+        const {_id, Username,input} = args
+        return await updateEmployeeById(_id, Username, input);
       } catch (error) {
         throw new Error(error);
       }

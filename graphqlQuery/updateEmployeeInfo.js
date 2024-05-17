@@ -1,5 +1,9 @@
 const updateEmployeeInfo = `
-    updateEmployeeInfo(UserId: String, input: EmployeeInfoInput): EmployeeInfo
+    updateEmployeeInfo(UserId: String, Username: String, input: EmployeeInfoInput): EmployeeInfo
 `;
 
-module.exports = updateEmployeeInfo
+const updateEmployeeById = `
+updateEmployeeInfoById(_id:String, Username: String, input: EmployeeInfoInput): EmployeeInfo
+`;
+
+module.exports = { updateEmployeeInfo, updateEmployeeById}

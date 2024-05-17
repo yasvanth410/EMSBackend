@@ -2,7 +2,6 @@ const EmployeeInfo = require('../models/employeeInfo');
 
 
 async function saveEmployeeInfo(args){
-    console.log(args);
     const { FirstName, MiddleName, LastName, EmployeeCode, UserId, Photo, Gender, Contact, Email, Location, dob, doj, doc, Department, SkillSet, ManagerId, Designation, CreatedBy, IsActive, IsDeleted} = args.input;
     const { CountryCode, Primary, Emergency } = Contact;
     // const { number:primaryNumber, internationalNumber:primaryInternationalNumber, nationalNumber:primaryNationalNumber, e164Number:primaryE164Number, countryCode: primaryCountryCode} = Primary
@@ -59,7 +58,7 @@ async function saveEmployeeInfo(args){
             },
             ManagerId: ManagerId,
             Designation: Designation,
-            CreatedBy: CreatedBy,
+            CreatedBy: args.Username,
             CreatedDate: date.toLocaleDateString() + " " + date.toLocaleTimeString(), 
             IsActive: IsActive,
             IsDeleted: IsDeleted
