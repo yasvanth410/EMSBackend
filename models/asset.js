@@ -49,6 +49,9 @@ const assetSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  AssignTo:{
+    type: String,
+  },
   Description: {
     type: String,
   },
@@ -85,6 +88,9 @@ const assetSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
+  Message:{
+    type: String
+  }
 });
 
 module.exports = mongoose.model("asset", assetSchema, "AssetDetails");

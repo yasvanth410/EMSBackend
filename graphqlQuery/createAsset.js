@@ -10,6 +10,7 @@ type Asset{
     Warranty: String
     AssetTag: String
     SerialNumber: String
+    AssignTo: String
     Description: String
     Addon: String
     IsWorkable: Int
@@ -19,6 +20,7 @@ type Asset{
     UpdatedDate: String
     IsActive: Int
     IsDeleted: Int
+    Message: String
 }
 
 input AssetInput{
@@ -32,6 +34,7 @@ input AssetInput{
     Warranty: String
     AssetTag: String
     SerialNumber: String
+    AssignTo: String
     Description: String
     Addon: String
     IsWorkable: Int
