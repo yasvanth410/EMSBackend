@@ -1,4 +1,5 @@
 const Asset = require("../models/asset");
+const Errors = require('../models/errorLogs');
 
 async function saveRole(args) {
   // console.log(args);
@@ -13,6 +14,7 @@ async function saveRole(args) {
       Warranty,
       AssetTag,
       SerialNumber,
+      AssignTo,
       Description,
       Addon,
       IsWorkable,
@@ -29,6 +31,7 @@ async function saveRole(args) {
       Warranty: Warranty,
       AssetTag: AssetTag,
       SerialNumber: SerialNumber,
+      AssignTo: AssignTo,
       Description: Description,
       Addon: Addon,
       IsWorkable: IsWorkable,
@@ -37,6 +40,9 @@ async function saveRole(args) {
     });
     // console.log(saveInfo)
     const savedDate = await saveInfo.save();
+    if(!savedDate || savedDate.length === 0 ){
+      savedDate.Message = ''
+    }
     return savedDate;
   } catch (error) {
     throw error;

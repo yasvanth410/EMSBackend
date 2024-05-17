@@ -52,6 +52,7 @@ const typeDefs = gql`
       Warranty: String
       AssetTag: String
       SerialNumber: String
+      AssignTo: String
       Description: String
       Addon: String
       IsWorkable: Int
