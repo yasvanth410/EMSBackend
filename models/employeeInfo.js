@@ -88,7 +88,7 @@ const locationSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function (v) {
-                const contactValid = /^\d{6}$/;
+                const contactValid = /^\d{5}(-\d{4})?$|^\d{6}$/;
                 return contactValid.test(v);
             },
             message: (props) => `${props.value} is not a valid pincode`,
