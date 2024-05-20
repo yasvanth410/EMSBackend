@@ -1,7 +1,7 @@
 const Asset = require("../models/asset");
 
 async function updateAsset(args) {
-  console.log(args);
+  // console.log(args);
   try {
     const { input } = args;
     const _id = input._id;

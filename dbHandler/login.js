@@ -33,7 +33,7 @@ async function getLoginData(args) {
 
             //sending login responses
             loginResponse.status = 404,
-            loginResponse.errorMessage = "Invalid user / user is no longer active"
+            loginResponse.errorMessage = "Invalid Username/Password. Try again"
             return loginResponse;
         } else {
             if (Password && await bcrypt.compare(Password, employee[0].Password)) {

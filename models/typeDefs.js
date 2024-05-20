@@ -53,6 +53,8 @@ const typeDefs = gql`
       AssetTag: String
       SerialNumber: String
       AssignTo: String
+      AssignDate: String
+      DischargeDate: String
       Description: String
       Addon: String
       IsWorkable: Int

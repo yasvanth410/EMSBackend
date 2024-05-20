@@ -52,6 +52,12 @@ const assetSchema = new mongoose.Schema({
   AssignTo:{
     type: String,
   },
+  AssignDate:{
+    type: String,
+  },
+  DischargeDate:{
+    type: String,
+  },
   Description: {
     type: String,
   },
