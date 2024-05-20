@@ -1,5 +1,4 @@
 const Asset = require("../models/asset");
-const Errors = require('../models/errorLogs');
 
 async function saveRole(args) {
   // console.log(args);
