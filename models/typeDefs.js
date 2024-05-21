@@ -15,6 +15,7 @@ const { login, employeeLoginResponse } = require("../graphqlQuery/loginQuery");
 const getEmployeeInfoById = require("../graphqlQuery/employeeInfoById");
 const {updateEmployeeInfo, updateEmployeeById} = require("../graphqlQuery/updateEmployeeInfo");
 const getAllEmployeeInfo = require("../graphqlQuery/getAllEmployeeInfo");
+const enumValuesInfo = require("../graphqlQuery/createEnumValues");
 
 const typeDefs = gql`
   scalar Date
@@ -28,6 +29,7 @@ const typeDefs = gql`
     getOneAsset(_id: String): Asset
     getOnePermission(_id: String): Permission
     getOneRole(_id: String): Role
+    getAllEnumValues: [EnumValues]
   }
 
   type Mutation {
@@ -79,6 +81,7 @@ const typeDefs = gql`
   ${assetInfo}
   ${employeeInfo}
   ${employeeLoginResponse}
+  ${enumValuesInfo}
 `;
 
 module.exports = { typeDefs };

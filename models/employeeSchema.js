@@ -50,7 +50,7 @@ const employeeSchema = mongoose.Schema({
     Role: {
         type:String,
         required:true,
-        enum:['user', 'admin']
+        enum:['User', 'Admin']
     },
     CreatedBy: String,
     CreatedDate: String,
