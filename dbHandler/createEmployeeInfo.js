@@ -1,24 +1,25 @@
 const EmployeeInfo = require('../models/employeeInfo');
+const DepartmentModel = require('../models/department');
 
 
 async function saveEmployeeInfo(args){
-    const { FirstName, MiddleName, LastName, EmployeeCode, UserId, Photo, Gender, Contact, Email, Location, dob, doj, doc, Department, SkillSet, Assets, ManagerId, Designation, CreatedBy, IsActive, IsDeleted} = args.input;
+    const { FirstName, MiddleName, LastName, EmployeeCode, Photo, Gender, Contact, Email, Location, dob, doj, doc, Department, SkillSet, Assets, ManagerId, Designation, CreatedBy, IsActive, IsDeleted} = args.input;
     const { CountryCode, Primary, Emergency } = Contact;
     // const { number:primaryNumber, internationalNumber:primaryInternationalNumber, nationalNumber:primaryNationalNumber, e164Number:primaryE164Number, countryCode: primaryCountryCode} = Primary
     // const { number:emergencyNumber, internationalNumber:emergencyInternationalNumber, nationalNumber:emergencyNationalNumber, e164Number:emergencyE164Number, countryCode: emergencyCountryCode} = Primary
     const { CompanyMail, PersonalMail} = Email;
     const { Flat, Area, Landmark, Pincode, City, State } = Location;
-    const {DepartmentId, DepartmentName} = Department;
     const { EmployeeSkillsetId, PrimarySkillset, SecondarySkillset, SkillLevel, Experience, Certification} = SkillSet;
     const { CertificationName, CertificationDate } = Certification
     try {
+
+        const departmentData = DepartmentModel.findOne({DepartmentName: Department, IsDeleted: 0});
         const date = new Date();
         const saveInfo = new EmployeeInfo({
             FirstName: FirstName,
             MiddleName: MiddleName,
             LastName: LastName,
             EmployeeCode: EmployeeCode,
-            UserId: UserId,
             Photo: Photo,
             Gender: Gender,
             Contact: {
@@ -41,10 +42,7 @@ async function saveEmployeeInfo(args){
             dob: dob,
             doj: doj,
             doc: doc,
-            Department: {
-                DepartmentId: DepartmentId,
-                DepartmentName: DepartmentName
-            },
+            Department: departmentData._id,
             SkillSet: {
                 EmployeeSkillsetId: EmployeeSkillsetId,
                 PrimarySkillset: PrimarySkillset,

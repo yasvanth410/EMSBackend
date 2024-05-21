@@ -1,5 +1,5 @@
 const getEmployeeInfoById = `
-employeeInfoById(UserId: String):EmployeeInfo 
+employeeInfoById(UserId:String):EmployeeInfo 
 `
 
 module.exports = getEmployeeInfoById

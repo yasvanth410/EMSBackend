@@ -1,4 +1,5 @@
 const assetInfo = require("./createAsset");
+const {employeeInfo} = require('./createEmployee');
 
 const employeeInfoQuery = `
 
@@ -20,8 +21,15 @@ type Location{
     State: String
 }
 type Department{
-    DepartmentId: String
+    _id: String
     DepartmentName: String
+    Description: String
+    CreatedBy: String
+    CreatedDate: String
+    UpdatedBy: String
+    UpdatedDate: String
+    IsActive: Int
+    IsDeleted: Int
 }
 type Certification{
     CertificationName: String
@@ -42,7 +50,7 @@ type EmployeeInfo{
     MiddleName: String
     LastName: String
     EmployeeCode: String
-    UserId: String
+    UserId:Employee 
     Photo: String
     Gender: String
     Contact : Contact
@@ -81,8 +89,12 @@ input LocationInput{
     State: String
 }
 input DepartmentInput{
-    DepartmentId: String
     DepartmentName: String
+    Description: String
+    CreatedBy: String
+    CreatedDate: String
+    UpdatedBy: String
+    UpdatedDate: String
 }
 input CertificationInput{
     CertificationName: String
@@ -102,7 +114,6 @@ input EmployeeInfoInput{
     MiddleName: String
     LastName: String
     EmployeeCode: String
-    UserId: String
     Photo: String
     Gender: String
     Contact : ContactInput
@@ -172,6 +183,8 @@ input AssetInput{
     IsActive: Int
     IsDeleted: Int
 }
+
+${employeeInfo}
 `;
 
 const createEmployeeInfo = `

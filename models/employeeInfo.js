@@ -15,27 +15,11 @@ const contactSchema = new mongoose.Schema({
   },
   Primary: {
     type: String,
-
     required: true,
-    // validate: {
-    //     validator: function (v) {
-    //         const contactValid = /^\d{10}$/;
-    //         return contactValid.test(v);
-    //     },
-    //     message: (props) => `${props.value} should contains only 10 digits`,
-    // },
   },
   Emergency: {
     type: String,
-
     required: true,
-    // validate: {
-    //     validator: function (v) {
-    //         const contactValid = /^\d{10}$/;
-    //         return contactValid.test(v);
-    //     },
-    //     message: (props) => `${props.value} should contains only 10 digits`,
-    // },
   },
 });
 
@@ -104,17 +88,17 @@ const locationSchema = new mongoose.Schema({
   },
 });
 
-const departmentSchema = new mongoose.Schema({
-  _id: false,
-  DepartmentId: {
-    type: String,
-    required: true,
-  },
-  DepartmentName: {
-    type: String,
-    required: true,
-  },
-});
+// const departmentSchema = new mongoose.Schema({
+//   _id: false,
+//   DepartmentId: {
+//     type: String,
+//     required: true,
+//   },
+//   DepartmentName: {
+//     type: String,
+//     required: true,
+//   },
+// });
 
 const certificationSchema = new mongoose.Schema({
   _id: false,
@@ -161,8 +145,8 @@ const employeeInfoSchema = new mongoose.Schema({
     required: true,
   },
   UserId: {
-    type: String,
-    required: true,
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'employee'
   },
   Photo: {
     type: String,
@@ -187,7 +171,10 @@ const employeeInfoSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  Department: departmentSchema,
+  Department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'department'
+  },
   SkillSet: skillSetSchema,
   Assets: [
     {
