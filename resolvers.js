@@ -17,6 +17,7 @@ const updateAsset = require("./dbHandler/updateAsset.js");
 const updateRole = require("./dbHandler/updateRole.js");
 const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 const updateEmployeeById = require("./dbHandler/updateEmployeeInfoById.js");
+const getAllEnumValues = require("./dbHandler/getAllEnumValues.js");
 const createDepartment = require('./dbHandler/createDepartment.js')
 
 const resolvers = {
@@ -69,6 +70,13 @@ const resolvers = {
     getOneRole: async (parent, args) => {
       try {
         return await getOneRole(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getAllEnumValues: async (parent, args) => {
+      try {
+        return await getAllEnumValues();
       } catch (error) {
         throw new Error(error);
       }

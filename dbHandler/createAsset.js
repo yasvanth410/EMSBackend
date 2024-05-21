@@ -1,4 +1,5 @@
 const Asset = require("../models/asset");
+const EmployeeInfo = require('../models/employeeInfo');
 
 async function saveRole(args) {
   // console.log(args);
@@ -21,6 +22,9 @@ async function saveRole(args) {
       IsWorkable,
       CreatedBy,
     } = args;
+
+    const employee = EmployeeInfo.findOne({Email: {comp}})
+
     const date = new Date();
     const saveInfo = new Asset({
       AssetName: AssetName,
