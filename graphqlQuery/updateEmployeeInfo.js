@@ -1,5 +1,5 @@
 const updateEmployeeInfo = `
-    updateEmployeeInfo(UserId: String, Username: String, input: EmployeeInfoInput): EmployeeInfo
+    updateEmployeeInfo(UserId:String, Username: String, input: EmployeeInfoInput): EmployeeInfo
 `;
 
 const updateEmployeeById = `

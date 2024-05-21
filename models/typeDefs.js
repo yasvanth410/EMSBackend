@@ -15,6 +15,7 @@ const { login, employeeLoginResponse } = require("../graphqlQuery/loginQuery");
 const getEmployeeInfoById = require("../graphqlQuery/employeeInfoById");
 const {updateEmployeeInfo, updateEmployeeById} = require("../graphqlQuery/updateEmployeeInfo");
 const getAllEmployeeInfo = require("../graphqlQuery/getAllEmployeeInfo");
+const {department, createDepartment} = require('../graphqlQuery/CreateDepartment');
 
 const typeDefs = gql`
   scalar Date
@@ -67,11 +68,12 @@ const typeDefs = gql`
     ${createEmployeeInfo}
     ${updateEmployeeInfo}
     ${updateEmployeeById}
+    ${createDepartment}
   }
 
   ${employeeInfo}
 
-  
+  ${department}
 
   ${employeeInfoQuery}
   ${permissionInfo}

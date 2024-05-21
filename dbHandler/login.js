@@ -39,7 +39,7 @@ async function getLoginData(args) {
             if (Password && await bcrypt.compare(Password, employee[0].Password)) {
                 //loging the login actions
                 const authLogFields = new AuthLogs({
-                    UserId: employee[0].UserId,
+                    UserId: employee[0]._id,
                     UserName: employee[0].UserName,
                     Action: "login",
                     ActionMessage: `login success: ${employee[0].UserName} is logged in successfully`,
@@ -54,10 +54,10 @@ async function getLoginData(args) {
                 //sending login responses
                 const secretKey = process.env.SECRET_KEY
                 const payload = {
-                    UserId : employee[0].UserId
+                    UserId : employee[0]._id
                 }
                 const jwtToken = jwt.sign(payload, secretKey, {expiresIn:"20m"});
-                loginResponse.userId = employee[0].UserId,
+                loginResponse.userId = employee[0]._id,
                 loginResponse.role = employee[0].Role,
                 loginResponse.username = employee[0].UserName,
                 loginResponse.message = `${employee[0].UserName} is logged in successfully`,
@@ -68,7 +68,7 @@ async function getLoginData(args) {
             } else {
                 //loging the login actions
                 const authLogFields = new AuthLogs({
-                    UserId: employee[0].UserId,
+                    UserId: employee[0]._id,
                     UserName: employee[0].UserName,
                     Action: "login",
                     ActionMessage: `login failed: login credentials are not correct`,
