@@ -122,9 +122,9 @@ input EmployeeInfoInput{
     dob: Date
     doj: Date
     doc: Date
-    Department: DepartmentInput
+    Department: String
     SkillSet: SkillsetInput
-    Assets: [AssetInput]
+    Assets: [String]
     ManagerId: String
     Designation: String
     CreatedBy: String

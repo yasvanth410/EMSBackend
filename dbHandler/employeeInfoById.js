@@ -2,7 +2,7 @@ const EmployeeInfo = require('../models/employeeInfo');
 
 async function getEmployeeInfo(args){
     const { UserId } = args
-    console.log("Id:", UserId);
+    // console.log("Id:", UserId);
     try {
      const getEmployeeById = await EmployeeInfo.find({UserId: UserId, IsActive: 1, IsDeleted: 0}).populate('Assets');
      if(!getEmployeeById || getEmployeeById.length===0){
@@ -16,7 +16,7 @@ async function getEmployeeInfo(args){
 
 async function getAllEmployeesInfo(){
     try {
-        const employeesInfo = await EmployeeInfo.find({IsActive:1, IsDeleted:0});
+        const employeesInfo = await EmployeeInfo.find({IsActive:1, IsDeleted:0}).populate('Department');
         if(!employeesInfo || employeesInfo.length===0){
             throw new Error("No Employee found");
         }
