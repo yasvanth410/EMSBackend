@@ -9,6 +9,14 @@ const enumValuesSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  LaptopOperatingSystem: {
+    type: [String],
+    required: true,
+  },
+  MobileOperatingSystem: {
+    type: [String],
+    required: true,
+  },
   Skillset: {
     type: [String],
     required: true,
