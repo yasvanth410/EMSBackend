@@ -13,7 +13,7 @@ async function saveEmployeeInfo(args){
     const { CertificationName, CertificationDate } = Certification
     try {
 
-        const departmentData = DepartmentModel.findOne({DepartmentName: Department, IsDeleted: 0});
+        const departmentData = await DepartmentModel.findOne({DepartmentName: Department, IsDeleted: 0});
         console.log(departmentData.query.Schema.obj);
         if(departmentData){
             const date = new Date();
@@ -65,8 +65,8 @@ async function saveEmployeeInfo(args){
                 IsDeleted: IsDeleted
             });
             console.log(saveInfo)
-            // const savedDate = await saveInfo.save();
-            // return savedDate; 
+            const savedDate = await saveInfo.save();
+            return savedDate; 
         }
         else{
             throw new Error("department not found");

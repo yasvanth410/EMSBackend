@@ -26,4 +26,21 @@ async function getAllEmployeesInfo(){
     }
 }
 
-module.exports = {getEmployeeInfo, getAllEmployeesInfo}
+async function getAllManagers(){
+    try {
+        const designations = ["Chief Executive Officer", "Manager", "Product Manager", "Associate Product Manager"];
+        const managerInfo = await EmployeeInfo.find({
+            Designation: { $in: designations },
+            IsActive: 1,
+            IsDeleted: 0
+          });
+        if(!managerInfo || managerInfo.length===0){
+            throw new Error("No Manager found");
+        }
+        return managerInfo;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {getEmployeeInfo, getAllEmployeesInfo, getAllManagers}
