@@ -2,6 +2,8 @@ const enumValuesInfo = `
 type EnumValues{
     AssetType: [String]
     Warranty: [String]
+    LaptopOperatingSystem: [String]
+    MobileOperatingSystem: [String]
     Skillset: [String]
     SkillLevel: [String]
     Department: [String]
@@ -12,6 +14,8 @@ type EnumValues{
 input EnumValuesInput{
     AssetType: [String]
     Warranty: [String]
+    LaptopOperatingSystem: [String]
+    MobileOperatingSystem: [String]
     Skillset: [String]
     SkillLevel: [String]
     Department: [String]
