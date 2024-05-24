@@ -17,6 +17,8 @@ const {updateEmployeeInfo, updateEmployeeById} = require("../graphqlQuery/update
 const getAllEmployeeInfo = require("../graphqlQuery/getAllEmployeeInfo");
 const enumValuesInfo = require("../graphqlQuery/createEnumValues");
 const {department, createDepartment} = require('../graphqlQuery/CreateDepartment');
+const {certificateInfo, createCertificateInfo} = require('../graphqlQuery/certificateTypeDef');
+const {goalInfo, createGoalInfo, getGoalInfoById} = require('../graphqlQuery/goalTypeDef');
 
 const typeDefs = gql`
   scalar Date
@@ -25,6 +27,7 @@ const typeDefs = gql`
     ${login}
     ${getEmployeeInfoById}
     ${getAllEmployeeInfo}
+    ${getGoalInfoById}
     getPermission: [Permission]
     getAsset: [Asset]
     getOneAsset(_id: String): Asset
@@ -71,6 +74,8 @@ const typeDefs = gql`
     ${updateEmployeeInfo}
     ${updateEmployeeById}
     ${createDepartment}
+    ${createCertificateInfo}
+    ${createGoalInfo}
   }
 
   ${employeeInfo}
@@ -84,6 +89,8 @@ const typeDefs = gql`
   ${employeeInfo}
   ${employeeLoginResponse}
   ${enumValuesInfo}
+  ${certificateInfo}
+  ${goalInfo}
 `;
 
 module.exports = { typeDefs };
