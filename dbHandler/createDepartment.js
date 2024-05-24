@@ -1,7 +1,7 @@
 const Department = require('../models/department');
 
 async function createDepartment(args){
-    console.log(args)
+    // console.log(args)
     const {DepartmentName, Description, CreatedBy,  IsActive, IsDeleted} = args.input
     try{
         const date = new Date();

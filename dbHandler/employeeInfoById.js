@@ -42,5 +42,16 @@ async function getAllManagers(){
         throw error;
     }
 }
+async function getAllTeamLeads(){
+    try {
+        const teamLeads = await EmployeeInfo.find({Designation: 'Team Lead', IsActive: 1, IsDeleted: 0});
+        if(!teamLeads || teamLeads.length===0){
+            throw new Error("No team leads found");
+        }
+        return teamLeads
+    } catch (error) {
+        throw error;
+    }
+}
 
-module.exports = {getEmployeeInfo, getAllEmployeesInfo, getAllManagers}
+module.exports = {getEmployeeInfo, getAllEmployeesInfo, getAllManagers, getAllTeamLeads}

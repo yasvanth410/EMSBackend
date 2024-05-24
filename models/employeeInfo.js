@@ -142,7 +142,7 @@ const employeeInfoSchema = new mongoose.Schema({
   },
   EmployeeCode: {
     type: String,
-    required: true,
+    // required: true,
   },
   UserId: {
     type:mongoose.Schema.Types.ObjectId,
@@ -185,7 +185,6 @@ const employeeInfoSchema = new mongoose.Schema({
 
   ManagerId: {
     type: String,
-    required: true,
   },
   Designation: {
     type: String,

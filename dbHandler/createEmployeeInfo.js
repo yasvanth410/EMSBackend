@@ -14,7 +14,6 @@ async function saveEmployeeInfo(args){
     try {
 
         const departmentData = await DepartmentModel.findOne({DepartmentName: Department, IsDeleted: 0});
-        console.log(departmentData.query.Schema.obj);
         if(departmentData){
             const date = new Date();
             const saveInfo = new EmployeeInfo({
@@ -64,7 +63,6 @@ async function saveEmployeeInfo(args){
                 IsActive: IsActive,
                 IsDeleted: IsDeleted
             });
-            console.log(saveInfo)
             const savedDate = await saveInfo.save();
             return savedDate; 
         }
