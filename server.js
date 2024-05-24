@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require('express');
 const DBConnection = require('./dbConnection');
-const {expressMiddleware} = require('@apollo/server/express4');
+const { expressMiddleware } = require('@apollo/server/express4');
 const cors = require('cors');
 const { typeDefs } = require('./models/typeDefs');
 const { ApolloServer } = require('@apollo/server');
@@ -9,11 +9,17 @@ const { resolvers } = require('./resolvers');
 const CustomError = require('./errorHandler/customError');
 const errorHandle = require('./errorHandler/errorHandler');
 const saveErrorLogs = require('./dbHandler/errorLogs');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 
 const app = express();
 const port = process.env.PORT
 
+// Middlewares
+app.use(bodyParser.json());
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 async function startServer(){
     
@@ -34,20 +40,29 @@ async function startServer(){
             }
            const errorJson = await saveErrorLogs(sendErrors);
         //    console.log(errorJson);
-            // return error;
+            return error;
         },
     });
+
     await server.start();
     app.use(cors());
     app.use(express.json());
-    app.use("/graphql", expressMiddleware(server));
+
+    // Middleware to handle file uploads in GraphQL
+    app.use('/graphql', upload.single('photo'), (req, res, next) => {
+        if (req.file) {
+            req.body.file = req.file;
+        }
+        next();
+    }, expressMiddleware(server));
 
     app.get('/favicon.ico', (req, res) => res.status(204));
     
     app.all('*', (req, res, next)=>{
-            const err = new CustomError(`can't find ${req.originalUrl} on the server!`, 404);
-            next(err);
+        const err = new CustomError(`can't find ${req.originalUrl} on the server!`, 404);
+        next(err);
     })
+
     app.use(errorHandle);
     
     app.listen(port, ()=>{

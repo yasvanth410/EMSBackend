@@ -21,6 +21,9 @@ const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 const updateEmployeeById = require("./dbHandler/updateEmployeeInfoById.js");
 const getAllEnumValues = require("./dbHandler/getAllEnumValues.js");
 const createDepartment = require('./dbHandler/createDepartment.js');
+const createCertificate = require('./dbHandler/createCertificate.js');
+const createGoal = require('./dbHandler/createGoal.js');
+const getGoalById = require('./dbHandler/getGoalById.js');
 
 const resolvers = {
   Query: {
@@ -34,6 +37,13 @@ const resolvers = {
     employeeInfoById: async (parent, args) => {
       try {
         return await getEmployeeInfo(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    goalInfoById: async (parent, args) => {
+      try {
+        return await getGoalById(args);
       } catch (error) {
         throw new Error(error);
       }
@@ -139,9 +149,16 @@ const resolvers = {
         throw new Error(error);
       }
     },
-    createDepartment: async(parent, args)=>{
+    createCertificate: async(parent, args)=>{
       try {
-        return await createDepartment(args);
+        return await createCertificate(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    createGoal: async(parent, args)=>{
+      try {
+        return await createGoal(args);
       } catch (error) {
         throw new Error(error);
       }
