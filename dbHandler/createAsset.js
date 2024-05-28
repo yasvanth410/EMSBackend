@@ -1,4 +1,5 @@
 const Asset = require("../models/asset");
+const EmployeeInfo = require("../models/employeeInfo");
 
 async function saveAsset(args) {
   // console.log(args);
@@ -16,38 +17,64 @@ async function saveAsset(args) {
       AssignTo,
       AssignDate,
       DischargeDate,
+      AssetPurchaseDate,
+      AssetStatus,
+      Cost,
+      Supplier,
       Description,
       Addon,
       IsWorkable,
       CreatedBy,
     } = args;
 
-    const date = new Date();
-    const saveInfo = new Asset({
-      AssetName: AssetName,
-      AssetModel: AssetModel,
-      AssetType: AssetType,
-      Memory: Memory,
-      Processor: Processor,
-      OperatingSystem: OperatingSystem,
-      Warranty: Warranty,
-      AssetTag: AssetTag,
-      SerialNumber: SerialNumber,
-      AssignTo: AssignTo,
-      AssignDate: AssignDate,
-      DischargeDate: DischargeDate,
-      Description: Description,
-      Addon: Addon,
-      IsWorkable: IsWorkable,
-      CreatedBy: CreatedBy,
-      CreatedDate: date.toLocaleDateString() + " " + date.toLocaleTimeString(),
+    const employeeInfoData = await EmployeeInfo.findOne({
+      EmployeeCode: AssignTo,
     });
-    // console.log(saveInfo)
-    const savedDate = await saveInfo.save();
-    if(!savedDate || savedDate.length === 0 ){
-      savedDate.Message = ''
+
+    if (employeeInfoData) {
+      const date = new Date();
+      const saveInfo = new Asset({
+        AssetName: AssetName,
+        AssetModel: AssetModel,
+        AssetType: AssetType,
+        Memory: Memory,
+        Processor: Processor,
+        OperatingSystem: OperatingSystem,
+        Warranty: Warranty,
+        AssetTag: AssetTag,
+        SerialNumber: SerialNumber,
+        AssignDate: AssignDate,
+        DischargeDate: DischargeDate,
+        AssetPurchaseDate: AssetPurchaseDate,
+        AssetStatus: AssetStatus,
+        Cost: Cost,
+        Supplier: Supplier,
+        Description: Description,
+        Addon: Addon,
+        IsWorkable: IsWorkable,
+        CreatedBy: CreatedBy,
+        CreatedDate:
+          date.toLocaleDateString() + " " + date.toLocaleTimeString(),
+      });
+      // console.log(saveInfo)
+      const savedData = await saveInfo.save();
+
+      employeeInfoData.Assets.push(savedData._id);
+
+      const updateEmployeeInfoData = await EmployeeInfo.findByIdAndUpdate(
+        employeeInfoData._id,
+        employeeInfoData
+      );
+
+      console.log(updateEmployeeInfoData);
+      if (!savedData || savedData.length === 0) {
+        savedData.Message = "Error in Create Asset.";
+      }
+
+      return savedData;
+    } else {
+      throw new Error("Employee not found");
     }
-    return savedDate;
   } catch (error) {
     throw error;
   }

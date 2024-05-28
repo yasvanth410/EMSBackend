@@ -37,6 +37,10 @@ const enumValuesSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  AssetStatus: {
+    type: [String],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("enum", enumValuesSchema, "EnumValues");

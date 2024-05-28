@@ -49,14 +49,28 @@ const assetSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  AssignTo:{
+  AssignDate: {
     type: String,
   },
-  AssignDate:{
+  DischargeDate: {
     type: String,
   },
-  DischargeDate:{
+  AssetPurchaseDate: {
     type: String,
+    required: true,
+  },
+  AssetStatus: {
+    type: String,
+    required: true,
+    enum: ["Available", "Assigned", "Under Maintenance"],
+  },
+  Cost: {
+    type: String,
+    required: true,
+  },
+  Supplier: {
+    type: String,
+    required: true,
   },
   Description: {
     type: String,
@@ -94,9 +108,9 @@ const assetSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
-  Message:{
-    type: String
-  }
+  Message: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("asset", assetSchema, "AssetDetails");
