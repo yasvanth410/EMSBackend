@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Counter = require("./Counter");
 
 const contactSchema = new mongoose.Schema({
   _id: false,
@@ -86,6 +87,10 @@ const locationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Country: {
+    type: String,
+    required: true,
+  },
 });
 
 // const departmentSchema = new mongoose.Schema({
@@ -142,7 +147,7 @@ const employeeInfoSchema = new mongoose.Schema({
   },
   EmployeeCode: {
     type: String,
-    // required: true,
+    required: true,
   },
   UserId: {
     type:mongoose.Schema.Types.ObjectId,
@@ -185,6 +190,12 @@ const employeeInfoSchema = new mongoose.Schema({
 
   ManagerId: {
     type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "employeeInfo"
+  },
+  TeamLead:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "employeeInfo"
   },
   Designation: {
     type: String,
@@ -207,6 +218,21 @@ const employeeInfoSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+employeeInfoSchema.pre("save", function(next) {
+  Counter.findOneAndUpdate(
+    { _id: "IN1000" },
+    { $inc: { EmployeeCode: 1 } },
+    { new: true, upsert: true }
+  )
+  .then((counter) => {
+    this.EmployeeCode = `IN${counter.EmployeeCode}`;
+    next();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+})
 
 module.exports = mongoose.model(
   "employeeInfo",

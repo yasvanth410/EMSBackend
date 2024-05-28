@@ -19,6 +19,7 @@ type Location{
     Pincode: String
     City: String
     State: String
+    Country: String
 }
 type Department{
     _id: String
@@ -62,7 +63,8 @@ type EmployeeInfo{
     Department: Department
     SkillSet: Skillset
     Assets: [Asset]
-    ManagerId: String
+    ManagerId: EmployeeInfo
+    TeamLead: EmployeeInfo
     Designation: String
     CreatedBy: String
     UpdatedBy: String
@@ -87,6 +89,7 @@ input LocationInput{
     Pincode: String
     City: String
     State: String
+    Country: String
 }
 input DepartmentInput{
     DepartmentName: String
@@ -126,6 +129,7 @@ input EmployeeInfoInput{
     SkillSet: SkillsetInput
     Assets: [String]
     ManagerId: String
+    TeamLead: String
     Designation: String
     CreatedBy: String
     UpdatedBy: String

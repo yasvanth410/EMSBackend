@@ -189,6 +189,7 @@ const resolvers = {
     updateEmployeeInfoById: async(_, args)=>{
       try {
         const {_id, Username,input} = args
+        console.log("Hhhq");
         return await updateEmployeeById(_id, Username, input);
       } catch (error) {
         throw new Error(error);
