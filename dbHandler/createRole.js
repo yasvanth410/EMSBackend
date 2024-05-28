@@ -2,7 +2,7 @@ const Role = require('../models/role');
 
 
 async function saveRole(args){
-    console.log(args);
+    // console.log(args);
     try {
         const{Name, CreatedBy, Description, Permission}= args
         const date = new Date();

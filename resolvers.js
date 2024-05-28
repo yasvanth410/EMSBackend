@@ -20,6 +20,7 @@ const updateRole = require("./dbHandler/updateRole.js");
 const updateEmployeeInfo = require('./dbHandler/updateEmployeeInfo.js');
 const updateEmployeeById = require("./dbHandler/updateEmployeeInfoById.js");
 const getAllEnumValues = require("./dbHandler/getAllEnumValues.js");
+const getHoliday = require("./dbHandler/getAllHoliday.js");
 const createDepartment = require('./dbHandler/createDepartment.js');
 const createCertificate = require('./dbHandler/createCertificate.js');
 const createGoal = require('./dbHandler/createGoal.js');
@@ -107,6 +108,13 @@ const resolvers = {
     getAllEnumValues: async (parent, args) => {
       try {
         return await getAllEnumValues();
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getAllHoliday: async (parent, args) => {
+      try {
+        return await getHoliday();
       } catch (error) {
         throw new Error(error);
       }

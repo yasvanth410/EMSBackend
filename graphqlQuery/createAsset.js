@@ -10,9 +10,12 @@ type Asset{
     Warranty: String
     AssetTag: String
     SerialNumber: String
-    AssignTo: String
     AssignDate: String
     DischargeDate: String
+    AssetPurchaseDate: String
+    AssetStatus: String
+    Cost: String
+    Supplier: String
     Description: String
     Addon: String
     IsWorkable: Int
@@ -26,7 +29,6 @@ type Asset{
 }
 
 input AssetInput{
-    _id : String
     AssetName: String
     AssetModel: String
     AssetType: String
@@ -36,9 +38,12 @@ input AssetInput{
     Warranty: String
     AssetTag: String
     SerialNumber: String
-    AssignTo: String
     AssignDate: String
     DischargeDate: String
+    AssetPurchaseDate: String
+    AssetStatus: String
+    Cost: String
+    Supplier: String
     Description: String
     Addon: String
     IsWorkable: Int
@@ -46,8 +51,8 @@ input AssetInput{
     CreatedDate: String
     UpdatedBy: String
     UpdatedDate: String
-    IsActive: Int
-    IsDeleted: Int
+    Message: String
+    AssignTo: String
 }
 `;
 

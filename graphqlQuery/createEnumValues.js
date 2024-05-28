@@ -9,6 +9,7 @@ type EnumValues{
     Department: [String]
     Designation: [String]
     Role: [String]
+    AssetStatus: [String]
 }
 
 input EnumValuesInput{
@@ -21,6 +22,7 @@ input EnumValuesInput{
     Department: [String]
     Designation: [String]
     Role: [String]
+    AssetStatus: [String]
 }
 `;
 
