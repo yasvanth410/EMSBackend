@@ -9,7 +9,7 @@ const assetSchema = new mongoose.Schema({
   AssetType: {
     type: String,
     required: true,
-    enum: ["Laptop", "Tablet", "Phone", "Monitor", "Mouse"],
+    enum: ["Laptop", "Tablet", "Phone", "Monitor", "Mouse", "Keyboard"],
   },
   Memory: {
     type: String,
@@ -93,7 +93,7 @@ assetSchema.pre("save", function (next) {
   )
     .then((counter) => {
       // console.log(this.AssetType);
-      console.log(counter);
+      // console.log(counter);
       switch (this.AssetType) {
         case "Laptop":
           this.AssetTag = `IN-PA-L${counter.AssetTag}`;
