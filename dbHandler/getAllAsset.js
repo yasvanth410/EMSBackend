@@ -5,11 +5,26 @@ async function getAsset() {
   try {
     const assets = await Asset.find({ IsDeleted: 0 });
 
-    const employeeInfoData = EmployeeInfo.findOne({Assets: assets[0]._id})
+    const employeeInfoData = await EmployeeInfo.find().populate("Assets");
     if (!assets || assets.length === 0) {
       throw new Error("Assets not found");
     }
-    return assets;
+
+    const assetEmployeeMap = {};
+
+    employeeInfoData.forEach((employee) => {
+      employee.Assets.forEach((asset) => {
+        assetEmployeeMap[asset._id] = employee.EmployeeCode;
+      });
+    });
+
+    const assetsWithEmployees = assets.map((asset) => ({
+      ...asset.toObject(),
+      AssignTo: assetEmployeeMap[asset._id] || null,
+    }));
+    console.log(assetsWithEmployees);
+
+    return assetsWithEmployees;
   } catch (error) {
     throw error;
   }
