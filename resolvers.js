@@ -5,7 +5,8 @@ const {
   getEmployeeInfo,
   getAllEmployeesInfo,
   getAllManagers,
-  getAllTeamLeads
+  getAllTeamLeads,
+  getEmployeeInfoById
 } = require("./dbHandler/employeeInfoById");
 const savePermission = require("./dbHandler/createPermission.js");
 const saveRole = require("./dbHandler/createRole.js");
@@ -38,6 +39,13 @@ const resolvers = {
     employeeInfoById: async (parent, args) => {
       try {
         return await getEmployeeInfo(args);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    getEmployeeInfoBy_Id: async (parent, args)=>{
+      try {
+        return await getEmployeeInfoById(args);
       } catch (error) {
         throw new Error(error);
       }

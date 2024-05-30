@@ -2,13 +2,27 @@ const EmployeeInfo = require('../models/employeeInfo');
 
 async function getEmployeeInfo(args){
     const { UserId } = args
-    // console.log("Id:", UserId);
+    console.log("Id:", UserId);
     try {
      const getEmployeeById = await EmployeeInfo.find({UserId: UserId, IsActive: 1, IsDeleted: 0}).populate('Assets Department ManagerId TeamLead');
      if(!getEmployeeById || getEmployeeById.length===0){
         throw new Error("Employee not found")
      }
      return  getEmployeeById[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function getEmployeeInfoById(args){
+    const { _id } = args
+    console.log("Id:", _id);
+    try {
+     const getEmployeeById = await EmployeeInfo.findOne({_id: _id, IsActive: 1, IsDeleted: 0}).populate('Assets Department ManagerId TeamLead');
+     if(!getEmployeeById || getEmployeeById.length===0){
+        throw new Error("Employee not found")
+     }
+     return  getEmployeeById;
     } catch (error) {
         throw error;
     }
@@ -54,4 +68,4 @@ async function getAllTeamLeads(){
     }
 }
 
-module.exports = {getEmployeeInfo, getAllEmployeesInfo, getAllManagers, getAllTeamLeads}
+module.exports = {getEmployeeInfo, getEmployeeInfoById, getAllEmployeesInfo, getAllManagers, getAllTeamLeads}
