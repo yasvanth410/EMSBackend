@@ -37,7 +37,7 @@ const enumValuesSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
-  AssetStatus: {
+  AssetCondition: {
     type: [String],
     required: true,
   },

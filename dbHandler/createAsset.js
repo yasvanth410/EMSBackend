@@ -5,25 +5,21 @@ async function saveAsset(args) {
   // console.log(args);
   try {
     const {
-      AssetName,
       AssetModel,
       AssetType,
       Memory,
       Processor,
       OperatingSystem,
-      Warranty,
-      AssetTag,
+      WarrantyStart,
+      WarrantyExpire,
       SerialNumber,
       AssignTo,
       AssignDate,
-      DischargeDate,
       AssetPurchaseDate,
-      AssetStatus,
+      AssetCondition,
       Cost,
-      Supplier,
+      Vendor,
       Description,
-      Addon,
-      IsWorkable,
       CreatedBy,
     } = args;
 
@@ -31,34 +27,28 @@ async function saveAsset(args) {
       EmployeeCode: AssignTo,
     });
 
+    const date = new Date();
+    const saveInfo = new Asset({
+      AssetModel: AssetModel,
+      AssetType: AssetType,
+      Memory: Memory,
+      Processor: Processor,
+      OperatingSystem: OperatingSystem,
+      WarrantyStart: WarrantyStart,
+      WarrantyExpire: WarrantyExpire,
+      SerialNumber: SerialNumber,
+      AssignDate: AssignDate,
+      AssetPurchaseDate: AssetPurchaseDate,
+      AssetCondition: AssetCondition,
+      Cost: Cost,
+      Vendor: Vendor,
+      Description: Description,
+      CreatedBy: CreatedBy,
+      CreatedDate: date.toLocaleDateString() + " " + date.toLocaleTimeString(),
+    });
+    // console.log(saveInfo)
+    const savedData = await saveInfo.save();
     if (employeeInfoData) {
-      const date = new Date();
-      const saveInfo = new Asset({
-        AssetName: AssetName,
-        AssetModel: AssetModel,
-        AssetType: AssetType,
-        Memory: Memory,
-        Processor: Processor,
-        OperatingSystem: OperatingSystem,
-        Warranty: Warranty,
-        AssetTag: AssetTag,
-        SerialNumber: SerialNumber,
-        AssignDate: AssignDate,
-        DischargeDate: DischargeDate,
-        AssetPurchaseDate: AssetPurchaseDate,
-        AssetStatus: AssetStatus,
-        Cost: Cost,
-        Supplier: Supplier,
-        Description: Description,
-        Addon: Addon,
-        IsWorkable: IsWorkable,
-        CreatedBy: CreatedBy,
-        CreatedDate:
-          date.toLocaleDateString() + " " + date.toLocaleTimeString(),
-      });
-      // console.log(saveInfo)
-      const savedData = await saveInfo.save();
-
       employeeInfoData.Assets.push(savedData._id);
 
       const updateEmployeeInfoData = await EmployeeInfo.findByIdAndUpdate(
@@ -66,15 +56,13 @@ async function saveAsset(args) {
         employeeInfoData
       );
 
-      console.log(updateEmployeeInfoData);
-      if (!savedData || savedData.length === 0) {
-        savedData.Message = "Error in Create Asset.";
-      }
-
-      return savedData;
-    } else {
-      throw new Error("Employee not found");
+      // console.log(updateEmployeeInfoData);
     }
+    if (!savedData || savedData.length === 0) {
+      savedData.Message = "Error in Create Asset.";
+    }
+
+    return savedData;
   } catch (error) {
     throw error;
   }

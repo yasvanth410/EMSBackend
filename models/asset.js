@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
+const Counter = require("./Counter");
 
 const assetSchema = new mongoose.Schema({
-  AssetName: {
-    type: String,
-    required: true,
-  },
   AssetModel: {
     type: String,
     required: true,
@@ -12,36 +9,27 @@ const assetSchema = new mongoose.Schema({
   AssetType: {
     type: String,
     required: true,
-    enum: ["Laptop", "Mobile", "Keyboard", "Mouse", "Wifi Router"],
+    enum: ["Laptop", "Tablet", "Phone", "Monitor", "Mouse"],
   },
   Memory: {
     type: String,
-    required: true,
   },
   Processor: {
     type: String,
-    required: true,
   },
   OperatingSystem: {
     type: String,
-    required: true,
   },
-  Warranty: {
+  WarrantyStart: {
     type: String,
     required: true,
-    enum: [
-      "1 Year",
-      "2 Year",
-      "3 Year",
-      "4 Year",
-      "5 Year",
-      "6 Year",
-      "7 Year",
-    ],
+  },
+  WarrantyExpire: {
+    type: String,
+    required: true,
   },
   AssetTag: {
     type: String,
-    required: true,
     unique: true,
   },
   SerialNumber: {
@@ -57,32 +45,19 @@ const assetSchema = new mongoose.Schema({
   },
   AssetPurchaseDate: {
     type: String,
-    required: true,
   },
-  AssetStatus: {
+  AssetCondition: {
     type: String,
-    required: true,
-    enum: ["Available", "Assigned", "Under Maintenance"],
+    enum: ["Fair", "Bad", "Good", "Damaged", "Repaired", "Sold"],
   },
   Cost: {
     type: String,
-    required: true,
   },
-  Supplier: {
+  Vendor: {
     type: String,
-    required: true,
   },
   Description: {
     type: String,
-  },
-  Addon: {
-    type: String,
-  },
-  IsWorkable: {
-    type: Number,
-    enum: [0, 1],
-    default: 1,
-    required: true,
   },
   CreatedBy: {
     type: String,
@@ -108,9 +83,40 @@ const assetSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
-  Message: {
-    type: String,
-  },
+});
+
+assetSchema.pre("save", function (next) {
+  Counter.findOneAndUpdate(
+    { _id: "IN1000" },
+    { $inc: { AssetTag: 1 } },
+    { new: true, upsert: true }
+  )
+    .then((counter) => {
+      // console.log(this.AssetType);
+      console.log(counter);
+      switch (this.AssetType) {
+        case "Laptop":
+          this.AssetTag = `IN-PA-L${counter.AssetTag}`;
+          break;
+        case "Tablet":
+          this.AssetTag = `IN-PA-T${counter.AssetTag}`;
+          break;
+        case "Phone":
+          this.AssetTag = `IN-PA-P${counter.AssetTag}`;
+          break;
+        case "Monitor":
+          this.AssetTag = `IN-PA-M${counter.AssetTag}`;
+          break;
+
+        default:
+          this.AssetTag = `IN-PA-O${counter.AssetTag}`;
+          break;
+      }
+      next();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 module.exports = mongoose.model("asset", assetSchema, "AssetDetails");
