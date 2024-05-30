@@ -20,7 +20,7 @@ const contactSchema = new mongoose.Schema({
   },
   Emergency: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 
@@ -58,38 +58,38 @@ const locationSchema = new mongoose.Schema({
   _id: false,
   Flat: {
     type: String,
-    required: true,
+    // required: true,
   },
   Area: {
     type: String,
-    required: true,
+    // required: true,
   },
   Landmark: {
     type: String,
-    required: true,
+    // required: true,
   },
   Pincode: {
     type: String,
-    required: true,
-    validate: {
-      validator: function (v) {
-        const contactValid = /^\d{5}(-\d{4})?$|^\d{6}$/;
-        return contactValid.test(v);
-      },
-      message: (props) => `${props.value} is not a valid pincode`,
-    },
+    // required: true,
+    // validate: {
+    //   validator: function (v) {
+    //     const contactValid = /^\d{5}(-\d{4})?$|^\d{6}$/;
+    //     return contactValid.test(v);
+    //   },
+    //   message: (props) => `${props.value} is not a valid pincode`,
+    // },
   },
   City: {
     type: String,
-    required: true,
+    // required: true,
   },
   State: {
     type: String,
-    required: true,
+    // required: true,
   },
   Country: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 
@@ -147,7 +147,7 @@ const employeeInfoSchema = new mongoose.Schema({
   },
   EmployeeCode: {
     type: String,
-    required: true,
+    // required: true,
   },
   UserId: {
     type:mongoose.Schema.Types.ObjectId,
@@ -155,7 +155,7 @@ const employeeInfoSchema = new mongoose.Schema({
   },
   Photo: {
     type: String,
-    required: true,
+    // required: true,
   },
   Gender: {
     type: String,
@@ -166,15 +166,15 @@ const employeeInfoSchema = new mongoose.Schema({
   Location: locationSchema,
   dob: {
     type: Date,
-    required: true,
+    // required: true,
   },
   doj: {
     type: Date,
-    required: true,
+    // required: true,
   },
   doc: {
     type: Date,
-    required: true,
+    // required: true,
   },
   Department: {
     type: mongoose.Schema.Types.ObjectId,
@@ -199,7 +199,7 @@ const employeeInfoSchema = new mongoose.Schema({
   },
   Designation: {
     type: String,
-    required: true,
+    // required: true,
   },
   CreatedBy: String,
   CreatedDate: String,

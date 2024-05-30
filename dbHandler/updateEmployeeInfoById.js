@@ -8,11 +8,17 @@ async function updateEmployeeById(_id, Username, input){
         input.UpdatedBy = Username,
         input.UpdatedDate = date.toLocaleDateString()+" "+date.toLocaleTimeString();
         const departmentData = await DepartmentModel.findOne({DepartmentName: input.Department, IsDeleted: 0});
-        input.Department = departmentData._id;
+        if(departmentData){
+            input.Department = departmentData._id;
+        }
         const employeeInfoData = await EmployeeInfo.findOne({EmployeeCode: input.TeamLead, IsDeleted: 0});
-        input.TeamLead = employeeInfoData._id;
+        if(employeeInfoData){
+            input.TeamLead = employeeInfoData._id;
+        }
         const employeeInfo = await EmployeeInfo.findOne({EmployeeCode: input.ManagerId, IsDeleted: 0});
-        input.ManagerId = employeeInfo._id;
+        if(employeeInfo){
+            input.ManagerId = employeeInfo._id;
+        }
         const updateEmployee = await EmployeeInfo.findByIdAndUpdate(_id, input, {new: true, runValidators: true}); 
         if(!updateEmployee){
             throw new Error(`Employee not found with ${UserId}`);
