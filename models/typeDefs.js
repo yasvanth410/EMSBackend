@@ -64,24 +64,20 @@ const typeDefs = gql`
     ): Role
 
     createAsset(
-      AssetName: String
       AssetModel: String
       AssetType: String
       Memory: String
       Processor: String
       OperatingSystem: String
-      Warranty: String
-      AssetTag: String
+      WarrantyStart: String
+      WarrantyExpire: String
       SerialNumber: String
       AssignDate: String
-      DischargeDate: String
       AssetPurchaseDate: String
-      AssetStatus: String
+      AssetCondition: String
       Cost: String
-      Supplier: String
+      Vendor: String
       Description: String
-      Addon: String
-      IsWorkable: Int
       CreatedBy: String
       AssignTo: String
     ): Asset

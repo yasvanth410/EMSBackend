@@ -9,6 +9,10 @@ const counterSchema = new mongoose.Schema({
         type: Number,
         default: 1000,
       },
+      AssetTag: {
+        type: Number,
+        default: 1000,
+      },
 });
 
 module.exports = mongoose.model('counter', counterSchema);
