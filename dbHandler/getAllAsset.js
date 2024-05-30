@@ -14,7 +14,12 @@ async function getAsset() {
 
     employeeInfoData.forEach((employee) => {
       employee.Assets.forEach((asset) => {
-        assetEmployeeMap[asset._id] = employee.EmployeeCode;
+        assetEmployeeMap[asset._id] =
+          employee.FirstName +
+          " " +
+          employee.LastName +
+          "-" +
+          employee.EmployeeCode;
       });
     });
 
@@ -22,7 +27,7 @@ async function getAsset() {
       ...asset.toObject(),
       AssignTo: assetEmployeeMap[asset._id] || null,
     }));
-    console.log(assetsWithEmployees);
+    // console.log(assetsWithEmployees);
 
     return assetsWithEmployees;
   } catch (error) {
