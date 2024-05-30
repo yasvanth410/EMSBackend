@@ -23,6 +23,7 @@ type Asset{
     UpdatedDate: String
     IsActive: Int
     IsDeleted: Int
+    AssignTo:String
 }
 
 input AssetInput{
